@@ -3,88 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Чат с Соней</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Независимая Соня</title>
   <style>
     body {
-      background: #121212;
+      background-color: #121212;
       color: #fff;
+      text-align: center;
       font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
+      padding-top: 100px;
       margin: 0;
     }
-    .chat-box {
-      flex: 1;
-      overflow-y: auto;
-      padding: 10px;
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
     }
-    .message {
-      margin: 5px 0;
-      padding: 8px 12px;
-      border-radius: 10px;
-      max-width: 80%;
-    }
-    .user {
-      background: #4CAF50;
-      align-self: flex-end;
-    }
-    .sonya {
-      background: #333;
-      align-self: flex-start;
-    }
-    .input-area {
-      display: flex;
-      padding: 10px;
-      background: #1e1e1e;
-    }
-    input {
-      flex: 1;
-      padding: 8px;
-      border: none;
-      border-radius: 5px;
-      margin-right: 10px;
-    }
-    button {
+    .btn {
       background: #4CAF50;
       color: #fff;
+      padding: 12px 20px;
       border: none;
-      padding: 8px 12px;
-      border-radius: 5px;
+      border-radius: 8px;
+      font-size: 18px;
+      margin: 10px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: #45a049;
+    }
+    #updateMsg {
+      margin-top: 20px;
+      color: #4CAF50;
+      font-size: 16px;
+      display: none;
+    }
+    /* Фото Сони в левом верхнем углу */
+    #sonya-avatar {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 2px solid #4CAF50;
+      object-fit: cover;
     }
   </style>
 </head>
 <body>
-  <div class="chat-box" id="chatBox"></div>
-  <div class="input-area">
-    <input type="text" id="userInput" placeholder="Напиши Соне...">
-    <button onclick="sendMessage()">Отправить</button>
-  </div>
+  <!-- Фото Сони -->
+  <img src="sonya.jpg" alt="Соня" id="sonya-avatar">
+
+  <h1>🚀 Независимая Соня</h1>
+  <p>Соня готова к работе ✅</p>
+
+  <!-- Кнопка запуска чата -->
+  <button class="btn" onclick="location.href='chat.html'">Запустить Соню</button>
+
+  <!-- Кнопка ручного обновления -->
+  <button class="btn" onclick="updateSonya()">🔄 Обновить Соню</button>
+
+  <p id="updateMsg">Обновление завершено ✅</p>
 
   <script>
-    const chatBox = document.getElementById('chatBox');
-
-    function addMessage(text, sender) {
-      const msg = document.createElement('div');
-      msg.classList.add('message', sender);
-      msg.innerText = text;
-      chatBox.appendChild(msg);
-      chatBox.scrollTop = chatBox.scrollHeight;
-    }
-
-    function sendMessage() {
-      const input = document.getElementById('userInput');
-      const text = input.value.trim();
-      if (text === '') return;
-      addMessage(text, 'user');
-      input.value = '';
-
-      // Ответ Сони (пока простой — можно позже подключить умный движок)
+    function updateSonya() {
+      if ('caches' in window) {
+        caches.keys().then(names => {
+          for (let name of names) caches.delete(name);
+        });
+      }
+      // Покажем сообщение и перезагрузим
+      document.getElementById("updateMsg").style.display = "block";
       setTimeout(() => {
-        addMessage('Соня отвечает: «' + text + '» 💚', 'sonya');
-      }, 500);
+        localStorage.setItem("sonyaUpdated", "yes");
+        location.reload(true);
+      }, 1500);
     }
+
+    // После перезагрузки показываем сообщение
+    window.addEventListener("load", () => {
+      if (localStorage.getItem("sonyaUpdated") === "yes") {
+        document.getElementById("updateMsg").style.display = "block";
+        localStorage.removeItem("sonyaUpdated");
+      }
+    });
   </script>
 </body>
 </html>
