@@ -1,31 +1,46 @@
+/* Общий стиль */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #121212;
-  color: white;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #000; /* чёрный фон */
+  color: #fff; /* белый текст */
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-}
-.container {
   text-align: center;
 }
+
+/* Контейнер приложения */
+.app {
+  padding: 20px;
+}
+
+/* Заголовок */
+h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+/* Кнопка */
 button {
-  background-color: #4CAF50;
+  padding: 12px 25px;
+  font-size: 1rem;
   border: none;
-  padding: 15px 30px;
-  margin-top: 20px;
-  color: white;
-  font-size: 18px;
   border-radius: 8px;
+  background-color: #28a745; /* зелёная */
+  color: white;
   cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
+
+/* Эффекты кнопки */
 button:hover {
-  background-color: #45a049;
+  background-color: #218838;
+  transform: scale(1.05);
 }
-.avatar {
-  width: 200px;
-  border-radius: 50%;
-  margin-bottom: 20px;
+
+button:active {
+  transform: scale(0.95);
 }
