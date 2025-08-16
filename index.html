@@ -1,23 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Соня</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Независимая Соня</title>
 
   <!-- Подключение манифеста -->
   <link rel="manifest" href="manifest.json">
 
-  <!-- Цвет для статус-бара -->
-  <meta name="theme-color" content="#4CAF50">
+  <!-- Иконки -->
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+  <!-- Цвета темы -->
+  <meta name="theme-color" content="#000000">
+  <meta name="background-color" content="#000000">
+
+  <!-- Стили -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Независимая Соня</h1>
-  <button id="startButton">🚀 Запустить Соню</button>
-  <p id="status"></p>
+  <div class="app">
+    <h1>🚀 Независимая Соня</h1>
+    <p>Соня готова к работе ✅</p>
+    <button id="startButton">Запустить Соню</button>
+  </div>
 
+  <!-- Скрипты -->
   <script src="script.js"></script>
   <script>
+    // Регистрация service worker
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js');
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(reg => console.log('✅ Service Worker зарегистрирован:', reg))
+          .catch(err => console.error('❌ Ошибка SW:', err));
+      });
     }
   </script>
 </body>
+</html>
