@@ -1,5 +1,23 @@
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js');
-  }
-</script>
+<head>
+  <meta charset="UTF-8">
+  <title>Соня</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Подключение манифеста -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Цвет для статус-бара -->
+  <meta name="theme-color" content="#4CAF50">
+</head>
+<body>
+  <h1>Независимая Соня</h1>
+  <button id="startButton">🚀 Запустить Соню</button>
+  <p id="status"></p>
+
+  <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
+  </script>
+</body>
