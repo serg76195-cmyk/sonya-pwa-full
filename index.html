@@ -3,25 +3,88 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🚀 Независимая Соня</title>
-
-  <!-- Манифест -->
-  <link rel="manifest" href="manifest.json">
-
-  <!-- Цвет статус-бара -->
-  <meta name="theme-color" content="#000000">
-
-  <!-- Стили -->
+  <title>Чат с Соней</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: #121212;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+    }
+    .chat-box {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px;
+    }
+    .message {
+      margin: 5px 0;
+      padding: 8px 12px;
+      border-radius: 10px;
+      max-width: 80%;
+    }
+    .user {
+      background: #4CAF50;
+      align-self: flex-end;
+    }
+    .sonya {
+      background: #333;
+      align-self: flex-start;
+    }
+    .input-area {
+      display: flex;
+      padding: 10px;
+      background: #1e1e1e;
+    }
+    input {
+      flex: 1;
+      padding: 8px;
+      border: none;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+    button {
+      background: #4CAF50;
+      color: #fff;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🚀 Независимая Соня</h1>
-    <p>Соня готова к работе ✅</p>
-    <button onclick="startSonya()">Запустить Соню</button>
+  <div class="chat-box" id="chatBox"></div>
+  <div class="input-area">
+    <input type="text" id="userInput" placeholder="Напиши Соне...">
+    <button onclick="sendMessage()">Отправить</button>
   </div>
 
-  <!-- Скрипты -->
-  <script src="script.js"></script>
+  <script>
+    const chatBox = document.getElementById('chatBox');
+
+    function addMessage(text, sender) {
+      const msg = document.createElement('div');
+      msg.classList.add('message', sender);
+      msg.innerText = text;
+      chatBox.appendChild(msg);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('userInput');
+      const text = input.value.trim();
+      if (text === '') return;
+      addMessage(text, 'user');
+      input.value = '';
+
+      // Ответ Сони (пока простой — можно позже подключить умный движок)
+      setTimeout(() => {
+        addMessage('Соня отвечает: «' + text + '» 💚', 'sonya');
+      }, 500);
+    }
+  </script>
 </body>
 </html>
