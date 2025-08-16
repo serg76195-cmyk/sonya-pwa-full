@@ -1,42 +1,22 @@
 {
-  "name": "Независимая Соня",
+  "id": "sonya-app",
+  "name": "Соня",
   "short_name": "Соня",
   "description": "Личный автономный ассистент, работающий прямо с твоего телефона.",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": ".",
   "display": "standalone",
-  "orientation": "portrait",
-  "background_color": "#000000",
-  "theme_color": "#00ff66",
-  "lang": "ru-RU",
-  "dir": "ltr",
-  "prefer_related_applications": false,
-  "version": "1.0.0",
-  "author": "Serg",
+  "background_color": "#121212",
+  "theme_color": "#4CAF50",
   "icons": [
     {
       "src": "icons/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
+      "type": "image/png"
     },
     {
       "src": "icons/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "icons/maskable-icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "maskable"
-    },
-    {
-      "src": "icons/maskable-icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
+      "type": "image/png"
     }
   ]
 }
