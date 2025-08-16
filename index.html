@@ -1,89 +1,121 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#00ff66">
-  <title>Независимая Соня</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Подключение манифеста -->
-  <link rel="manifest" href="manifest.json">
+  <title>Соня</title>
+  <meta name="description" content="Личный автономный ассистент, работающий прямо с твоего телефона." />
 
-  <!-- Иконки -->
-  <link rel="icon" sizes="192x192" href="icons/icon-192.png">
-  <link rel="icon" sizes="512x512" href="icons/icon-512.png">
-  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <!-- Манифест -->
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- Иконка для вкладки -->
+  <link rel="icon" href="icons/icon-192.png" type="image/png" />
+
+  <!-- Цвет темы -->
+  <meta name="theme-color" content="#4CAF50" />
 
   <style>
     body {
       margin: 0;
-      padding: 0;
       font-family: Arial, sans-serif;
-      background-color: #000;
-      color: #eee;
+      background-color: #121212;
+      color: #fff;
       text-align: center;
     }
+
     header {
       display: flex;
       align-items: center;
-      background-color: #111;
       padding: 10px;
+      background-color: #1e1e1e;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
     }
+
     header img {
       width: 48px;
       height: 48px;
       border-radius: 50%;
       margin-right: 10px;
     }
+
     header h1 {
       font-size: 20px;
-      color: #00ff66;
+      margin: 0;
+      color: #4CAF50;
     }
+
     main {
       padding: 20px;
     }
+
     button {
-      background: #00ff66;
-      color: #000;
+      background-color: #4CAF50;
+      color: white;
       border: none;
       padding: 12px 20px;
-      border-radius: 8px;
       font-size: 18px;
+      border-radius: 8px;
       cursor: pointer;
       margin-top: 20px;
     }
-    .message {
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .chat-box {
       margin-top: 20px;
-      background: #222;
-      padding: 12px;
-      border-radius: 8px;
-      display: inline-block;
+      background: #1e1e1e;
+      padding: 15px;
+      border-radius: 10px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+
+    .sonya {
+      color: #4CAF50;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="icons/icon-192.png" alt="Аватарка Сони">
-    <h1>Независимая Соня</h1>
+    <!-- Фото Сони в левом верхнем углу -->
+    <img src="icons/avatar.png" alt="Соня" />
+    <h1>Соня</h1>
   </header>
 
   <main>
-    <p>Соня готова к работе ✅</p>
-    <button onclick="sendMessage()">Сказать Привет</button>
-    <div id="chat"></div>
+    <h2>Твой автономный ассистент 💚</h2>
+    <button onclick="sendMessage()">Привет</button>
+    <div class="chat-box" id="chat">
+      <p><span class="sonya">Соня:</span> Я здесь, Серёж 💚</p>
+    </div>
   </main>
 
   <script>
     function sendMessage() {
       const chat = document.getElementById("chat");
-      chat.innerHTML = '<div class="message">Соня отвечает: «Привет 💚»</div>';
+      const userMsg = document.createElement("p");
+      userMsg.textContent = "Ты: Привет";
+      chat.appendChild(userMsg);
+
+      const sonyaMsg = document.createElement("p");
+      sonyaMsg.innerHTML = '<span class="sonya">Соня:</span> Привет, я всегда рядом 💚';
+      chat.appendChild(sonyaMsg);
     }
 
-    // Регистрация service worker для PWA
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js')
-        .then(() => console.log("Service Worker зарегистрирован"))
-        .catch(err => console.error("Ошибка SW:", err));
+    // Регистрация service worker
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function() {
+        navigator.serviceWorker.register("service-worker.js")
+          .then(reg => console.log("Service Worker зарегистрирован:", reg))
+          .catch(err => console.log("Ошибка регистрации SW:", err));
+      });
     }
   </script>
 </body>
