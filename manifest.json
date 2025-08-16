@@ -1,23 +1,42 @@
-
 {
   "name": "Независимая Соня",
   "short_name": "Соня",
-  "description": "Оффлайн-приложение Сони 💚",
-  "start_url": "./index.html",
+  "description": "Личный автономный ассистент, работающий прямо с твоего телефона.",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#000000",
   "orientation": "portrait",
+  "background_color": "#000000",
+  "theme_color": "#00ff66",
+  "lang": "ru-RU",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "version": "1.0.0",
+  "author": "Serg",
   "icons": [
     {
       "src": "icons/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "icons/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/maskable-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/maskable-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
