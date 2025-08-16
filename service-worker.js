@@ -1,13 +1,14 @@
 self.addEventListener('install', (e) => {
   e.waitUntil(
-    caches.open('sonya-store').then((cache) => cache.addAll([
-      '/',
-      '/index.html',
-      '/style.css',
-      '/script.js',
-      '/sonya.png',
-      '/icon.png'
-    ]))
+    caches.open('sonya-store').then((cache) =>
+      cache.addAll([
+        '/',
+        '/index.html',
+        '/style.css',
+        '/script.js',
+        '/manifest.json'
+      ])
+    )
   );
 });
 
